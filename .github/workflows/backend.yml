@@ -29,6 +29,6 @@ jobs:
           npm ci
       - name: deploy
         run: |
-          npx ncc build index.ts
+          npx ncc build ./src/index.ts
           zip -j deploy.zip ./dist/*
           aws lambda update-function-code --function-name=prime --zip-file=fileb://deploy.zip
