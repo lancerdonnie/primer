@@ -1,9 +1,7 @@
+import { PRIME } from 'constants';
 import { CustomError } from 'error';
 import { cacheResult, getCachedResult } from 'repo';
 import type { IPrime } from '../types';
-
-const MAX = 100;
-const DISTANCE = 1;
 
 const isPrime = (num: number) => {
   if (num < 2) return false;
@@ -18,29 +16,31 @@ const isPrime = (num: number) => {
 
 const calculateDistance = (input: number): IPrime => {
   let result = [];
-  const leftNumber = input - DISTANCE;
-  const rightNumber = input + DISTANCE;
+  const leftNumber = input - PRIME.DISTANCE;
+  const rightNumber = input + PRIME.DISTANCE;
 
   if (isPrime(leftNumber)) result.push(leftNumber);
   else result.push(null);
 
-  if (isPrime(rightNumber) && input < MAX) result.push(rightNumber);
+  if (isPrime(rightNumber) && input < PRIME.MAX) result.push(rightNumber);
   else result.push(null);
 
   return { leftPrime: result[0], rightPrime: result[1], number: input };
 };
 
 const validate = (input?: any) => {
-  if (typeof input !== 'number') return 'number type is required';
-  if (input > MAX) return `maximum number allowed is ${MAX}`;
+  if (!input?.number) return 'number field is required';
+  if (typeof input.number !== 'number')
+    return 'number field should be a number';
+  if (input > PRIME.MAX) return `maximum number allowed is ${PRIME.MAX}`;
 };
 
-const getPrime = async (input: number): Promise<IPrime> => {
-  const error = validate(input);
+const getPrime = async (data: { number: number }): Promise<IPrime> => {
+  const error = validate(data);
   if (error) throw new CustomError(error, 400);
-  const cachedResult = await getCachedResult(input);
+  const cachedResult = await getCachedResult(data.number);
   if (cachedResult) return cachedResult;
-  const result = calculateDistance(input);
+  const result = calculateDistance(data.number);
   await cacheResult(result);
   return result;
 };
