@@ -5,6 +5,7 @@ import { HEADERS } from 'constants_';
 
 export const prime: Handler = async (event: APIGatewayProxyEvent) => {
   try {
+    console.log(event.body);
     const result = await getPrime(JSON.parse(event.body || '{}'));
 
     return {
