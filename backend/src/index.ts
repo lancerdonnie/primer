@@ -1,7 +1,7 @@
 import type { APIGatewayProxyEvent, Handler } from 'aws-lambda';
 import { CustomError } from 'error';
 import { getPrime } from 'services/prime';
-import { HEADERS } from 'constants';
+import { HEADERS } from 'constants_';
 
 export const prime: Handler = async (event: APIGatewayProxyEvent) => {
   try {

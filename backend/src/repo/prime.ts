@@ -2,7 +2,7 @@ import type { IPrime } from 'types';
 import db from '../db';
 import { GetItemCommand, PutItemCommand } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
-import { TABLE } from 'constants';
+import { TABLE } from '../constants_';
 
 const getCachedResult = async (input: number): Promise<IPrime | undefined> => {
   const { Item } = await db.send(

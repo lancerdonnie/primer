@@ -1,4 +1,4 @@
-import { PRIME } from 'constants';
+import { PRIME } from '../constants_';
 import { CustomError } from 'error';
 import { cacheResult, getCachedResult } from 'repo';
 import type { IPrime } from '../types';
