@@ -1,33 +1,29 @@
-// import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-import type {
-  APIGatewayProxyEvent,
-  APIGatewayProxyHandler,
-  Handler,
-} from 'aws-lambda';
-
-// const client = new DynamoDBClient({});
+import type { APIGatewayProxyEvent, Handler } from 'aws-lambda';
+import { CustomError } from 'error';
+import { getPrime } from 'services/prime';
 
 const headers = {
   'Content-Type': 'application/json',
 };
-export const prime: Handler = async (event: any) => {
+export const prime: Handler = async (event: APIGatewayProxyEvent) => {
   try {
-    // body = await dynamo
-    //   .scan({ TableName: event.queryStringParameters.TableName })
-    //   .promise();
-    // break;
-    // body = await dynamo.put(JSON.parse(event.body)).promise();
-    // break;
+    const result = await getPrime(JSON.parse(event.body || '{}')?.number);
+
     return {
       statusCode: 200,
-      body: JSON.stringify(event),
+      body: JSON.stringify(result),
       headers,
     };
   } catch (err) {
+    if (err instanceof CustomError)
+      return {
+        statusCode: err.statusCode,
+        body: err.message,
+      };
+
     return {
       statusCode: 500,
-      // body: err,
-      body: '',
+      body: 'Something went wrong',
     };
   }
 };
