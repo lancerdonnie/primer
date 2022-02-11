@@ -10,9 +10,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "@aws-sdk/client-dynamodb": "^3.50.0",
+    "@aws-sdk/util-dynamodb": "^3.50.0"
+  },
+  "devDependencies": {
     "@types/aws-lambda": "^8.10.92",
     "@vercel/ncc": "^0.33.1",
     "lambda-local": "^2.0.1",

@@ -1,23 +1,27 @@
 import type { IPrime } from 'types';
 import db from '../db';
+import { GetItemCommand, PutItemCommand } from '@aws-sdk/client-dynamodb';
+import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
+import { TABLE } from 'constants';
 
-// body = await db
-//   .scan({ TableName: event.queryStringParameters.TableName })
-//   .promise();
-// break;
-// body = await db.put(JSON.parse(event.body)).promise();
-// break;
+const getCachedResult = async (input: number): Promise<IPrime | undefined> => {
+  const { Item } = await db.send(
+    new GetItemCommand({
+      TableName: TABLE,
+      Key: marshall({ input }),
+    })
+  );
 
-const getCachedResult = (input: number): Promise<IPrime | undefined> => {
-  return new Promise((resolve, reject) => {
-    return resolve(undefined);
-  });
+  return Item ? (unmarshall(Item) as IPrime) : undefined;
 };
 
-const cacheResult = (input: IPrime): Promise<IPrime | undefined> => {
-  return new Promise((resolve, reject) => {
-    return resolve(undefined);
-  });
+const cacheResult = async (input: IPrime) => {
+  await db.send(
+    new PutItemCommand({
+      TableName: TABLE,
+      Item: marshall(input),
+    })
+  );
 };
 
 export { getCachedResult, cacheResult };

@@ -1,2 +1,6 @@
 import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
-export default new DynamoDBClient({});
+// import { REGION } from 'constants';
+
+export default new DynamoDBClient({
+  // region: REGION
+});
