@@ -7,7 +7,14 @@ module.exports = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#000',
+          DEFAULT: 'rgba(244, 228, 255, 0.3)',
+        },
+        secondary: { DEFAULT: 'rgb(242, 157, 75)', dark: 'rgb(231, 144, 61)' },
+        alt: {
+          1: 'rgb(60, 64, 95)',
+          2: '#340046',
+          3: '#FFBF33',
+          4: '#B82BF9',
         },
       },
       screens: {
@@ -18,7 +25,10 @@ module.exports = {
         '2xl': { max: '1536px' },
       },
       fontFamily: {
-        mont: ['Montserrat'],
+        pop: ['Poppins'],
+      },
+      backgroundImage: {
+        layer: "url('https://union54.com/shapes/layer-double.svg')",
       },
     },
   },
