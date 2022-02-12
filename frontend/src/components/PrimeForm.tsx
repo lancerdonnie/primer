@@ -20,7 +20,8 @@ const PrimeForm = ({ setNumbers, setError }: IProps) => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const err = validate(state);
-    if (err) return setFormError(err);
+    setFormError(err);
+    if (err) return;
     setLoading(true);
     try {
       const { data } = await Axios.post('/', { number: Number(state) });
@@ -44,9 +45,9 @@ const PrimeForm = ({ setNumbers, setError }: IProps) => {
         name="input"
         placeholder="Enter Number here"
         error={formError}
-        className="w-full md:w-96"
+        className="w-full md:w-80"
       />
-      <Button className="w-full md:w-96" type="submit" loading={loading}>
+      <Button className="w-full md:w-80" type="submit" loading={loading}>
         Generate
       </Button>
     </form>

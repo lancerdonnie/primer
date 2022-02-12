@@ -20,14 +20,14 @@ const NumberList = ({ numbers, error }: IProps) => {
         <span>number</span>
         <span>right prime</span>
       </div>
-      <div className="shadow rounded py-6 mt-3 h-[400px] md:h-auto overflow-auto fancy-scroll bg-alt-6 text-white space-y-4">
+      <div className="shadow rounded py-6 mt-3 h-[400px] md:h-auto overflow-auto fancy-scroll bg-alt-6 text-white">
         {error ? (
           <div className="h-full px-5 flex  flex-col items-center justify-center text-alt-2 text-xl">
             <span className="material-icons text-red-400 text-7xl">report</span>
             {error}
           </div>
         ) : numbers?.length ? (
-          <ul id="list">
+          <ul id="list" className="space-y-4">
             {numbers.reverse().map((e, i) => (
               <li id="list-item" className="flex justify-around" key={i}>
                 <NumberBadge number={e.leftPrime} />
