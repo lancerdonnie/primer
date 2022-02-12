@@ -15,6 +15,8 @@ module.exports = {
           2: '#340046',
           3: '#FFBF33',
           4: '#B82BF9',
+          5: '#ECC8FE',
+          6: '#F6E7FE',
         },
       },
       screens: {

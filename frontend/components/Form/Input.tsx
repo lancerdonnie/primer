@@ -4,11 +4,11 @@ type Props = React.InputHTMLAttributes<HTMLInputElement> & {
   error?: string;
 };
 
-const Input = ({ error, type, ...props }: Props) => {
+const Input = ({ error, type, className = '', ...props }: Props) => {
   return (
     <div className="flex flex-col">
       <input
-        className="border border-alt-1/30 text-alt-1 rounded h-12 px-4"
+        className={`border border-alt-1/30 text-alt-1 rounded h-12 px-4 ${className}`}
         {...props}
       />
       {error && (
