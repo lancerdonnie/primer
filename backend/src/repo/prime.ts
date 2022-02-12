@@ -4,11 +4,11 @@ import { GetItemCommand, PutItemCommand } from '@aws-sdk/client-dynamodb';
 import { marshall, unmarshall } from '@aws-sdk/util-dynamodb';
 import { TABLE } from '../constants_';
 
-const getCachedResult = async (input: number): Promise<IPrime | undefined> => {
+const getCachedResult = async (number: number): Promise<IPrime | undefined> => {
   const { Item } = await db.send(
     new GetItemCommand({
       TableName: TABLE,
-      Key: marshall({ input }),
+      Key: marshall({ number }),
     })
   );
 
