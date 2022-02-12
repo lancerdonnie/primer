@@ -36,6 +36,7 @@ const PrimeForm = ({ setNumbers, setError }: IProps) => {
 
   return (
     <form
+      name="form"
       className="mt-2 flex-col gap-4 flex md:items-center"
       onSubmit={handleSubmit}
     >

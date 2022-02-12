@@ -10,7 +10,7 @@ interface IProps {
 
 const NumberList = ({ numbers, error }: IProps) => {
   return (
-    <div className="">
+    <div>
       <div
         className={cx('flex justify-around text-alt-0 text-sm font-bold', {
           invisible: !numbers?.length,
@@ -27,13 +27,15 @@ const NumberList = ({ numbers, error }: IProps) => {
             Error fetching prime numbers
           </div>
         ) : numbers?.length ? (
-          numbers.reverse().map((e) => (
-            <div className="flex justify-around">
-              <NumberBadge number={e.leftPrime} />
-              <NumberBadge number={e.number} className="text-alt-3" />
-              <NumberBadge number={e.rightPrime} />
-            </div>
-          ))
+          <ul id="list">
+            {numbers.reverse().map((e, i) => (
+              <li id="list-item" className="flex justify-around" key={i}>
+                <NumberBadge number={e.leftPrime} />
+                <NumberBadge number={e.number} className="text-alt-3" />
+                <NumberBadge number={e.rightPrime} />
+              </li>
+            ))}
+          </ul>
         ) : (
           <div className="h-full px-5 flex items-center justify-center text-alt-2 text-xl">
             Generated prime numbers will appear here

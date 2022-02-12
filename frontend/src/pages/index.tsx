@@ -19,9 +19,9 @@ const Home: NextPage = () => {
         <Nav />
         <div className="flex md:flex-col gap-10 md:gap-5">
           <div className="flex-1">
-            <p className="text-sm text-justify md:text-center">
+            <h1 className="text-sm text-justify md:text-center">
               Generate prime numbers that are equi-distant from a number
-            </p>
+            </h1>
             <PrimeForm
               setNumbers={(data) => setNumbers((prev) => [...prev, data])}
               setError={(error) => setError(error)}
