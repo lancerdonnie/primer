@@ -23,7 +23,7 @@ const Home: NextPage = () => {
               Generate prime numbers that are equi-distant from a number
             </h1>
             <PrimeForm
-              setNumbers={(data) => setNumbers((prev) => [...prev, data])}
+              setNumbers={(data) => setNumbers((prev) => [data, ...prev])}
               setError={(error) => setError(error)}
             />
           </div>
