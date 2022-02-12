@@ -4,6 +4,7 @@ import Nav from 'components/Layout/Nav';
 import NumberList from 'components/NumberList';
 import PrimeForm from 'components/PrimeForm';
 import { IPrime } from 'types';
+import Head from 'next/head';
 
 const Home: NextPage = () => {
   const [numbers, setNumbers] = useState<IPrime[]>(
@@ -17,6 +18,9 @@ const Home: NextPage = () => {
 
   return (
     <div className="lg:px-4 md:px-5 sm:px-2">
+      <Head>
+        <title>Primer</title>
+      </Head>
       <div className="max-w-5xl mx-auto min-h-screen relative before:bg-layer before:absolute before:left-0 before:bottom-0 before:h-1/2 before:w-1/2 before:bg-no-repeat before:bg-bottom before:-z-10">
         <Nav />
         <div className="flex md:flex-col gap-10 md:gap-5">

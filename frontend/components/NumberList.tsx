@@ -25,13 +25,13 @@ const NumberList = ({ numbers, error }: IProps) => {
         ) : numbers?.length ? (
           numbers.reverse().map((e) => (
             <div className="flex justify-around">
-              <span className="text-xl font-bold bg-alt-2 px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
+              <span className="text-alt-2 text-xl font-bold bg-white px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
                 {e.leftPrime}
               </span>
-              <span className="text-alt-3 text-xl font-bold bg-alt-2 px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
+              <span className="text-alt-3 text-xl font-bold bg-white px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
                 {e.number}
               </span>
-              <span className="text-xl font-bold bg-alt-2 px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
+              <span className="text-alt-2 text-xl font-bold bg-white px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
                 {e.rightPrime}
               </span>
             </div>
