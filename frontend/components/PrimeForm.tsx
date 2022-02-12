@@ -25,6 +25,7 @@ const PrimeForm = ({ setNumbers, setError }: IProps) => {
     try {
       const { data } = await Axios.post('', { number: Number(state) });
       setNumbers(data);
+      setError('');
     } catch (error) {
       if (error instanceof Error) {
         setError(error.message);

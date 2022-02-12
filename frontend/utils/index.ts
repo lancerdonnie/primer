@@ -2,16 +2,17 @@ import { IPrime } from 'types';
 
 export const Axios = {
   post: (_: string, payload: { number: number }): Promise<{ data: IPrime }> =>
-    new Promise((res) => {
+    new Promise((res, rej) => {
+      // rej(new Error('error'));
       setTimeout(() => {
         res({
           data: {
-            leftPrime: 5,
+            leftPrime: null,
             rightPrime: 6,
             number: 7,
           },
         });
-      }, 3000);
+      }, 1000);
     }),
 };
 

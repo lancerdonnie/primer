@@ -7,13 +7,7 @@ import { IPrime } from 'types';
 import Head from 'next/head';
 
 const Home: NextPage = () => {
-  const [numbers, setNumbers] = useState<IPrime[]>(
-    Array.from({ length: 10 }).map((_) => ({
-      leftPrime: 5,
-      rightPrime: 7,
-      number: 6,
-    }))
-  );
+  const [numbers, setNumbers] = useState<IPrime[]>([]);
   const [error, setError] = useState<string>('');
 
   return (

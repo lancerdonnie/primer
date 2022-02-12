@@ -1,6 +1,7 @@
 import React from 'react';
 import cx from 'classnames';
 import { IPrime } from 'types';
+import NumberBadge from './NumberBadge';
 
 interface IProps {
   numbers: IPrime[];
@@ -21,23 +22,22 @@ const NumberList = ({ numbers, error }: IProps) => {
       </div>
       <div className="shadow rounded py-6 mt-3 h-[400px] md:h-auto overflow-auto fancy-scroll bg-alt-6 text-white space-y-4">
         {error ? (
-          <span>"Error fetching number"</span>
+          <div className="h-full px-5 flex  flex-col items-center justify-center text-alt-2 text-xl">
+            <span className="material-icons text-red-400 text-7xl">report</span>
+            Error fetching prime numbers
+          </div>
         ) : numbers?.length ? (
           numbers.reverse().map((e) => (
             <div className="flex justify-around">
-              <span className="text-alt-2 text-xl font-bold bg-white px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
-                {e.leftPrime}
-              </span>
-              <span className="text-alt-3 text-xl font-bold bg-white px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
-                {e.number}
-              </span>
-              <span className="text-alt-2 text-xl font-bold bg-white px-10 py-3 skew-x-[-7deg] rounded-xl rounded-tr-none">
-                {e.rightPrime}
-              </span>
+              <NumberBadge number={e.leftPrime} />
+              <NumberBadge number={e.number} className="text-alt-3" />
+              <NumberBadge number={e.rightPrime} />
             </div>
           ))
         ) : (
-          <div>numbers will appear here</div>
+          <div className="h-full px-5 flex items-center justify-center text-alt-2 text-xl">
+            Generated prime numbers will appear here
+          </div>
         )}
       </div>
     </div>

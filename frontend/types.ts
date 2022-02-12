@@ -1,5 +1,5 @@
 export interface IPrime {
-  leftPrime: number;
+  leftPrime: number | null;
   rightPrime: number;
-  number: number;
+  number: number | null;
 }
