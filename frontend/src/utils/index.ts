@@ -1,20 +1,12 @@
 import { IPrime } from 'types';
+import axios from 'axios';
 
-export const Axios = {
-  post: (_: string, payload: { number: number }): Promise<{ data: IPrime }> =>
-    new Promise((res, rej) => {
-      // rej(new Error('error'));
-      setTimeout(() => {
-        res({
-          data: {
-            leftPrime: null,
-            rightPrime: 6,
-            number: 7,
-          },
-        });
-      }, 1000);
-    }),
-};
+const bASE_URL =
+  'https://phmx1r5ac9.execute-api.us-east-2.amazonaws.com/default/prime';
+
+export const Axios = axios.create({
+  baseURL: bASE_URL,
+});
 
 const MAX = 100;
 

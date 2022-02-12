@@ -23,13 +23,11 @@ const PrimeForm = ({ setNumbers, setError }: IProps) => {
     if (err) return setFormError(err);
     setLoading(true);
     try {
-      const { data } = await Axios.post('', { number: Number(state) });
+      const { data } = await Axios.post('/', { number: Number(state) });
       setNumbers(data);
       setError('');
     } catch (error) {
-      if (error instanceof Error) {
-        setError(error.message);
-      }
+      setError('error fetching prime numbers');
     }
     setLoading(false);
   };

@@ -2,7 +2,7 @@
 
 > A prime number generator
 
-### Live url at [google.com](https://google.com)!
+### Live url at [primer-omega.vercel.app](https://primer-omega.vercel.app)!
 
 ---
 

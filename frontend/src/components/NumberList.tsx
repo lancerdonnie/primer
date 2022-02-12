@@ -24,7 +24,7 @@ const NumberList = ({ numbers, error }: IProps) => {
         {error ? (
           <div className="h-full px-5 flex  flex-col items-center justify-center text-alt-2 text-xl">
             <span className="material-icons text-red-400 text-7xl">report</span>
-            Error fetching prime numbers
+            {error}
           </div>
         ) : numbers?.length ? (
           <ul id="list">
