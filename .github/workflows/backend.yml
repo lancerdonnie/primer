@@ -4,7 +4,9 @@ on:
   push:
     branches:
     - master
-
+    paths:
+    - 'backend/**'
+    
 jobs:
   deploy_lambda:
     runs-on: ubuntu-latest
