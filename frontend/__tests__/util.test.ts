@@ -19,8 +19,8 @@ describe('Utils', () => {
     it(`input bigger than ${MAX} returns validation error`, () => {
       const error = validate(101);
       const error2 = validate(1000);
-      expect(error).toBe(`input must be a greater than ${MAX}`);
-      expect(error2).toBe(`input must be a greater than ${MAX}`);
+      expect(error).toBe(`input must not be greater than ${MAX}`);
+      expect(error2).toBe(`input must not be greater than ${MAX}`);
     });
     it(`number less than or equal to ${MAX} does not return any error`, () => {
       const error = validate(100);

@@ -3,7 +3,8 @@ import NumberList from 'components/NumberList';
 
 configure({ testIdAttribute: 'id' });
 
-const numbers = Array.from({ length: 20 }).map((_) => ({
+const numbers = Array.from({ length: 20 }).map((_, i) => ({
+  id: i + '',
   leftPrime: 999,
   number: 888,
   rightPrime: 777,
