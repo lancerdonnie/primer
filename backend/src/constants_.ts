@@ -9,4 +9,4 @@ export const PRIME = {
   DISTANCE: 1,
 };
 
-export const TABLE = 'prime';
+export const TABLE = 'Prime';
