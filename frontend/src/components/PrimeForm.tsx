@@ -30,6 +30,7 @@ const PrimeForm = ({ setNumbers, setError }: IProps) => {
       } = await Axios.post('/', { input: Number(state) });
       setNumbers({ ...data, id: nanoid() });
       setError('');
+      setState('');
     } catch (error) {
       setError('error fetching prime numbers');
     }
@@ -49,6 +50,7 @@ const PrimeForm = ({ setNumbers, setError }: IProps) => {
         placeholder="Enter Number here"
         error={formError}
         className="w-full md:w-80"
+        autoComplete="off"
       />
       <Button className="w-full md:w-80" type="submit" loading={loading}>
         Generate

@@ -11,7 +11,7 @@ const NumberBadge = ({ number, className }: IProps) => {
       className={`text-alt-2 text-xl font-bold bg-white w-24 h-14 skew-x-[-7deg] rounded-xl rounded-tr-none flex items-center justify-center ${className}`}
     >
       {typeof number === 'number' ? (
-        number
+        <span className="truncate">{number}</span>
       ) : (
         <span className="text-red-400">-</span>
       )}
