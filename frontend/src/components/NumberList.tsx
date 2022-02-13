@@ -1,7 +1,8 @@
 import React from 'react';
 import cx from 'classnames';
 import { IPrime } from 'types';
-import NumberBadge from './NumberBadge';
+import { AnimatePresence } from 'framer-motion';
+import NumberListItem from './NumberListItem';
 
 interface IProps {
   numbers: IPrime[];
@@ -28,13 +29,11 @@ const NumberList = ({ numbers, error }: IProps) => {
           </div>
         ) : numbers?.length ? (
           <ul id="list" className="space-y-4">
-            {numbers.map((e) => (
-              <li id="list-item" className="flex justify-around" key={e.id}>
-                <NumberBadge number={e.leftPrime} />
-                <NumberBadge number={e.number} className="text-alt-3" />
-                <NumberBadge number={e.rightPrime} />
-              </li>
-            ))}
+            <AnimatePresence>
+              {numbers.map((e) => (
+                <NumberListItem key={e.id} data={e} />
+              ))}
+            </AnimatePresence>
           </ul>
         ) : (
           <div className="h-full px-5 flex items-center justify-center text-alt-2 text-xl">
