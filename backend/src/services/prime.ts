@@ -24,7 +24,7 @@ const calculateDistance = (input: number): IPrime => {
     };
 
   let distance = 0;
-  let maxDistance = 1000;
+  let maxDistance = 10;
 
   while (distance < maxDistance) {
     distance++;
