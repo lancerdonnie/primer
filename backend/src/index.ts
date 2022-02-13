@@ -8,20 +8,18 @@ export const prime: Handler = async (event: APIGatewayProxyEvent) => {
   let body = {};
 
   try {
-    console.log(event.body);
     const result = await getPrime(JSON.parse(event.body || '{}'));
-
     statusCode = 200;
-    body = JSON.stringify(result);
+    body = JSON.stringify({ data: result });
   } catch (err) {
     console.log(err);
 
     if (err instanceof CustomError) {
       statusCode = err.statusCode;
-      body = err.message;
+      body = JSON.stringify({ error: err.message });
     } else {
       statusCode = 500;
-      body = 'Something went wrong';
+      body = JSON.stringify({ error: 'Something went wrong' });
     }
   }
 

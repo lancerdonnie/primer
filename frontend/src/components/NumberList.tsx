@@ -28,8 +28,8 @@ const NumberList = ({ numbers, error }: IProps) => {
           </div>
         ) : numbers?.length ? (
           <ul id="list" className="space-y-4">
-            {numbers.map((e, i) => (
-              <li id="list-item" className="flex justify-around" key={i}>
+            {numbers.map((e) => (
+              <li id="list-item" className="flex justify-around" key={e.id}>
                 <NumberBadge number={e.leftPrime} />
                 <NumberBadge number={e.number} className="text-alt-3" />
                 <NumberBadge number={e.rightPrime} />

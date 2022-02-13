@@ -11,5 +11,5 @@ const MAX = 100;
 export const validate = (input: any) => {
   if (input === '' || input === undefined) return 'input is required';
   if (isNaN(input)) return `input must be a number`;
-  if (Number(input) > MAX) return `input must be a greater than ${MAX}`;
+  if (Number(input) > MAX) return `input must not be greater than ${MAX}`;
 };

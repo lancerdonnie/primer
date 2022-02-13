@@ -1,11 +1,12 @@
-import { PRIME } from '../constants_';
+import { FIRST_PRIME_NUMBER } from '../constants_';
 import { CustomError } from 'error';
 import { cacheResult, getCachedResult } from 'repo';
-import type { IPrime } from '../types';
+import type { IPrime, IData } from '../types';
+import { validateNumber } from 'utils';
 
 const isPrime = (num: number) => {
-  if (num < 2) return false;
-  if (num === 2) return true;
+  if (num < FIRST_PRIME_NUMBER) return false;
+  if (num === FIRST_PRIME_NUMBER) return true;
   if (num % 2 === 0) return false;
 
   for (let i = 2; i < Math.ceil(num / 2); i++) {
@@ -15,32 +16,39 @@ const isPrime = (num: number) => {
 };
 
 const calculateDistance = (input: number): IPrime => {
-  let result = [];
-  const leftNumber = input - PRIME.DISTANCE;
-  const rightNumber = input + PRIME.DISTANCE;
+  if (input < FIRST_PRIME_NUMBER)
+    return {
+      leftPrime: null,
+      rightPrime: FIRST_PRIME_NUMBER,
+      number: input,
+    };
 
-  if (isPrime(leftNumber)) result.push(leftNumber);
-  else result.push(null);
+  let distance = 0;
+  let maxDistance = 1000;
 
-  if (isPrime(rightNumber) && input < PRIME.MAX) result.push(rightNumber);
-  else result.push(null);
-
-  return { leftPrime: result[0], rightPrime: result[1], number: input };
+  while (distance < maxDistance) {
+    distance++;
+    const leftSide = input - distance;
+    const rightSide = input + distance;
+    const leftSideisPrime = isPrime(leftSide);
+    const rightSidePrime = isPrime(rightSide);
+    if (leftSideisPrime || rightSidePrime) {
+      return {
+        leftPrime: leftSideisPrime ? leftSide : null,
+        rightPrime: rightSidePrime ? rightSide : null,
+        number: input,
+      };
+    }
+  }
+  return { leftPrime: null, rightPrime: null, number: input };
 };
 
-const validate = (input?: any) => {
-  if (!input?.number) return 'number field is required';
-  if (typeof input.number !== 'number')
-    return 'number field should be a number';
-  if (input > PRIME.MAX) return `maximum number allowed is ${PRIME.MAX}`;
-};
-
-const getPrime = async (data: { number: number }): Promise<IPrime> => {
-  const error = validate(data);
+const getPrime = async (data: IData): Promise<IPrime> => {
+  const error = validateNumber(data);
   if (error) throw new CustomError(error, 400);
-  const cachedResult = await getCachedResult(data.number);
+  const cachedResult = await getCachedResult(data.input!);
   if (cachedResult) return cachedResult;
-  const result = calculateDistance(data.number);
+  const result = calculateDistance(data.input!);
   await cacheResult(result);
   return result;
 };

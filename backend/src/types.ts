@@ -3,3 +3,7 @@ export interface IPrime {
   number: number;
   rightPrime: number | null;
 }
+
+export interface IData {
+  input?: number | never;
+}

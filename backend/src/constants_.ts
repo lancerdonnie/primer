@@ -4,9 +4,7 @@ export const HEADERS = {
   'Access-Control-Allow-Methods': '*',
 };
 
-export const PRIME = {
-  MAX: 100,
-  DISTANCE: 1,
-};
+export const MAX = 100;
+export const FIRST_PRIME_NUMBER = 2;
 
 export const TABLE = 'Prime';

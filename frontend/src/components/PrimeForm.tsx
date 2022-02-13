@@ -3,6 +3,7 @@ import Button from 'components/Form/Button';
 import Input from 'components/Form/Input';
 import { Axios, validate } from 'utils';
 import { IPrime } from 'types';
+import { nanoid } from 'nanoid/non-secure';
 
 interface IProps {
   setNumbers: (data: IPrime) => void;
@@ -24,8 +25,10 @@ const PrimeForm = ({ setNumbers, setError }: IProps) => {
     if (err) return;
     setLoading(true);
     try {
-      const { data } = await Axios.post('/', { number: Number(state) });
-      setNumbers(data);
+      const {
+        data: { data },
+      } = await Axios.post('/', { input: Number(state) });
+      setNumbers({ ...data, id: nanoid() });
       setError('');
     } catch (error) {
       setError('error fetching prime numbers');
